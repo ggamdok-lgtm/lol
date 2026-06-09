@@ -359,15 +359,15 @@ async function runCountdown(){
 
     countdown.textContent = "3";
 
-    await sleep(800);
+    await sleep(333);
 
     countdown.textContent = "2";
 
-    await sleep(800);
+    await sleep(333);
 
     countdown.textContent = "1";
 
-    await sleep(800);
+    await sleep(333);
 
     countdown.textContent = "";
 
