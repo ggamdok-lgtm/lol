@@ -1,0 +1,721 @@
+/* ================================= */
+/* RESET */
+/* ================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#091428;
+
+    --gold:#c8aa6e;
+
+    --gold-light:#f0e6d2;
+
+    --card:#1e2328;
+
+    --border:#463714;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #1a2745 0%,
+        #091428 40%,
+        #061018 100%
+    );
+
+    color:white;
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+.hidden{
+
+    display:none !important;
+}
+
+/* ================================= */
+/* COMMON */
+/* ================================= */
+
+.container{
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:40px 20px;
+}
+
+.title{
+
+    text-align:center;
+
+    color:var(--gold);
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+    letter-spacing:2px;
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:var(--gold-light);
+
+    margin-bottom:30px;
+}
+
+/* ================================= */
+/* OPTION */
+/* ================================= */
+
+.option-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+}
+
+.checkbox-wrap{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--gold-light);
+
+    font-size:18px;
+}
+
+/* ================================= */
+/* PLAYER INPUT */
+/* ================================= */
+
+#playerInputs{
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.player-row{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:12px;
+}
+
+.player-name{
+
+    flex:1;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:white;
+
+    font-size:15px;
+}
+
+.champion-count{
+
+    width:120px;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:white;
+}
+
+/* ================================= */
+/* BUTTON */
+/* ================================= */
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+
+    transform:
+    translateY(-2px);
+}
+
+#startBtn,
+#restartBtn,
+#teamBuildBtn,
+#backToResultBtn,
+#moveToTeam1Btn,
+#moveToTeam2Btn{
+
+    background:var(--gold);
+
+    color:#091428;
+
+    font-weight:bold;
+
+    padding:14px 24px;
+
+    border-radius:8px;
+}
+
+#startBtn{
+
+    display:block;
+
+    margin:30px auto;
+}
+
+.button-group{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:25px;
+}
+
+/* ================================= */
+/* FIRST PICK */
+/* ================================= */
+
+.team-action-bar{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+#rollFirstPickBtn{
+
+    background:#4e6cff;
+
+    color:white;
+
+    padding:14px 24px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+}
+
+#firstPickResult{
+
+    min-width:180px;
+
+    text-align:center;
+
+    color:var(--gold);
+
+    font-size:22px;
+
+    font-weight:bold;
+}
+
+/* ================================= */
+/* REVEAL */
+/* ================================= */
+
+.current-reveal-info{
+
+    text-align:center;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+}
+
+#currentPlayerName{
+
+    color:var(--gold);
+
+    font-weight:bold;
+}
+
+.countdown{
+
+    text-align:center;
+
+    font-size:120px;
+
+    color:var(--gold);
+
+    min-height:140px;
+}
+/* ================================= */
+/* REVEAL BOARD */
+/* ================================= */
+
+.all-players-reveal{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+}
+
+.reveal-player-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    border:2px solid #243040;
+
+    background:
+    rgba(
+        30,
+        35,
+        40,
+        .9
+    );
+}
+
+.reveal-player-row.active{
+
+    border-color:var(--gold);
+
+    box-shadow:
+    0 0 20px
+    rgba(
+        200,
+        170,
+        110,
+        .5
+    );
+}
+
+.reveal-player-name{
+
+    width:150px;
+
+    font-weight:bold;
+
+    color:var(--gold);
+
+    font-size:18px;
+}
+
+.reveal-champion-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+/* ================================= */
+/* FLIP CARD */
+/* ================================= */
+
+.champion-card{
+
+    width:110px;
+
+    height:150px;
+
+    perspective:1000px;
+}
+
+.flip-card{
+
+    width:100%;
+
+    height:100%;
+
+    position:relative;
+
+    transform-style:
+    preserve-3d;
+
+    transition:
+    transform .7s;
+}
+
+.flip-card.flipped{
+
+    transform:
+    rotateY(180deg);
+}
+
+.card-face{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    backface-visibility:hidden;
+}
+
+.card-back{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:var(--card);
+
+    border:2px solid var(--gold);
+
+    color:var(--gold);
+
+    font-size:40px;
+
+    font-weight:bold;
+}
+
+.card-front{
+
+    transform:
+    rotateY(180deg);
+
+    background:var(--card);
+
+    border:2px solid var(--gold);
+}
+
+.card-front img{
+
+    width:100%;
+
+    height:110px;
+
+    object-fit:cover;
+}
+
+.card-front p{
+
+    text-align:center;
+
+    padding:4px;
+
+    font-size:12px;
+
+    color:white;
+}
+
+/* ================================= */
+/* FINAL RESULT */
+/* ================================= */
+
+.final-result-container{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(
+            280px,
+            1fr
+        )
+    );
+
+    gap:20px;
+}
+
+.result-player{
+
+    background:var(--card);
+
+    border:2px solid var(--gold);
+
+    border-radius:10px;
+
+    padding:15px;
+}
+
+.result-player h3{
+
+    text-align:center;
+
+    color:var(--gold);
+
+    margin-bottom:15px;
+}
+
+.result-champion-list{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.result-champion{
+
+    width:90px;
+
+    text-align:center;
+}
+
+.result-champion img{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:8px;
+
+    border:2px solid var(--gold);
+
+    object-fit:cover;
+}
+
+.result-champion p{
+
+    margin-top:5px;
+
+    font-size:12px;
+}
+
+/* ================================= */
+/* TEAM BUILD */
+/* ================================= */
+
+.team-guide{
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    color:var(--gold-light);
+}
+
+.team-build-layout{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr 1fr;
+
+    gap:20px;
+}
+
+.team-area,
+.available-area{
+
+    background:var(--card);
+
+    border:2px solid var(--gold);
+
+    border-radius:10px;
+
+    min-height:500px;
+
+    padding:20px;
+}
+
+.team-area h2,
+.available-area h2{
+
+    text-align:center;
+
+    color:var(--gold);
+
+    margin-bottom:15px;
+}
+
+/* ================================= */
+/* PLAYER DRAFT CARD */
+/* ================================= */
+
+.draft-player-card{
+
+    background:#243040;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.draft-player-card:hover{
+
+    transform:scale(1.02);
+}
+
+.draft-player-card.selected{
+
+    border:2px solid var(--gold);
+
+    box-shadow:
+    0 0 12px
+    rgba(
+        200,
+        170,
+        110,
+        .5
+    );
+}
+
+.draft-player-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.draft-player-name{
+
+    color:var(--gold);
+
+    font-weight:bold;
+}
+
+.draft-player-champions{
+
+    display:flex;
+
+    gap:4px;
+
+    flex-wrap:wrap;
+}
+
+.mini-champion{
+
+    width:32px;
+
+    height:32px;
+
+    border-radius:5px;
+
+    border:2px solid var(--gold);
+
+    object-fit:cover;
+}
+
+/* ================================= */
+/* SCROLL */
+/* ================================= */
+
+#availablePlayers,
+#team1Players,
+#team2Players{
+
+    max-height:650px;
+
+    overflow-y:auto;
+}
+
+/* ================================= */
+/* MOBILE */
+/* ================================= */
+
+@media(
+    max-width:900px
+){
+
+    .player-row{
+
+        flex-direction:column;
+    }
+
+    .champion-count{
+
+        width:100%;
+    }
+
+    .team-build-layout{
+
+        grid-template-columns:
+        1fr;
+    }
+
+    .team-action-bar{
+
+        flex-direction:column;
+    }
+
+    .countdown{
+
+        font-size:80px;
+    }
+
+    .champion-card{
+
+        width:90px;
+
+        height:125px;
+    }
+
+    .card-front img{
+
+        height:90px;
+    }
+}
